@@ -1,1 +1,490 @@
-404: Not Found
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head><!-- forzar despliegue -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AENTROPÍA | Dinámica y Viabilidad de Sistemas Sociales</title>
+    <meta name="description" content="¿Te abruma el caos de la sociedad? Aentropía: el acto de orden frente a la entropía. Un marco de la termodinámica para evaluar viabilidad y estabilidad social.">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos temporales de wireframe para ver claramente las secciones */
+        section {border-bottom: 1px solid #333; } 
+        /*section { border-bottom: 2px dashed #ccc; } */
+        .placeholder-box { background-color: #f3f4f6; border: 1px solid #d1d5db; min-height: 200px; display: flex; align-items: center; justify-content: center; color: #6b7280; }
+        
+        /* Motor de Destello Aentrópico */
+        .logo-scanner {
+            position: relative;
+            overflow: hidden; /* Evita que la luz se salga del contorno */
+        }
+        .logo-scanner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            /* El láser: transparente -> blanco semitransparente -> transparente */
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transform: skewX(-25deg);
+        }
+        .logo-scanner.fire-laser::after {
+            animation: sweep 1s ease-in-out;
+        }
+        @keyframes sweep {
+            0% { left: -150%; }
+            100% { left: 200%; }
+        }
+        .hero-aentropia {
+          display: flex;
+          flex-direction: row; /* Horizontal por defecto */
+          flex-wrap: wrap;     /* Permite que los elementos bajen si no caben */
+          width: 100%;
+          max-width: 1200px;   /* Tu medida base */
+          min-height: 400px;
+          margin: 0 auto;
+          background-color: #000;
+          color: #fff;
+        }
+
+        .ecuaciones-container {
+          font-family: 'TuFuenteDelTitulo', sans-serif; /* Usa la misma del logo */
+          text-transform: uppercase;
+          text-align: center;
+          letter-spacing: 2px;
+          font-size: 1.1rem;
+          color: #ccc; /* Un gris claro para no robarle atención a las fórmulas */
+          margin-bottom: 20px;
+          flex: 0 0 350px;     /* Ancho fijo de 350px, no crece ni encoge */
+          padding: 30px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          border-left: 1px solid #333; /* Separación sutil */
+        }
+
+.diagrama-container {
+  flex: 1;             /* Toma todo el espacio restante (850px aprox) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.diagrama-container img {
+  width: 100%;
+  height: auto;
+  max-width: 850px;
+}
+
+/* LA REGLA DE CONMUTACIÓN (Media Query para Pantallas Verticales) */
+@media (max-width: 1000px) { /* Breakpoint cuando el ancho es menor a 1000px */
+  .hero-aentropia {
+    flex-direction: column; /* Cambia a vertical */
+    height: auto;
+  }
+
+  .ecuaciones-container {
+    flex: 1 0 auto;    /* Deja de ser de 350px y toma todo el ancho */
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #333; /* Separación ahora horizontal */
+  }
+  
+  .diagrama-container {
+    width: 100%;
+  }
+}
+</style>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "El Milagro de lo Improbable",
+  "alternateName": "El principio Aentrópico - Tratado de Ingeniería Civilizatoria",
+  "author": {
+    "@type": "Person",
+    "name": "Diomdes Jorge David Hugo Vizcardo",
+    "url": "https://aentropia.com"
+  },
+  "description": "Una obra fundamental sobre la ingeniería civilizatoria y la generación de orden sistémico (aentropía) frente al caos entrópico.",
+  "genre": "Ensayo científico y filosófico",
+  "keywords": "Aentropía, Negentropía, Ingeniería Civilizatoria, Orden Social, Termodinámica Social, Estructuras Disipativas, Termodinamica de no equilibrio, Teoria de control, aentropía",
+  "url": "https://aentropia.com",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://aentropia.com"
+  }
+}
+      </script>
+</head>
+<body class="bg-black text-gray-200 font-sans antialiased min-h-screen">
+
+    <nav id="dynamic-nav" class="fixed top-0 left-0 w-full z-50 transform -translate-y-full transition-transform duration-500 ease-in-out bg-gray-900 text-white shadow-xl border-b border-gray-700">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-2 md:gap-0">
+            <!-- EL LOGO INTEGRADO EN LA MATRIZ -->
+            <a id="logo-ancla" href="#hero" class="flex items-center gap-3 group logo-scanner">
+                <img src="logo-aentropia.png" alt="Símbolo Aentrópico" class="h-8 w-auto opacity-80 transition-opacity duration-300">
+                <span class="text-lg md:text-xl font-black uppercase tracking-widest text-white hidden sm:block">
+                    Aentropía
+                </span>
+            </a>
+            
+            <ul class="flex flex-wrap justify-center gap-x-4 gap-y-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-gray-400">
+                <li><a href="#principio" class="hover:text-white transition-colors duration-300">El Principio</a></li>
+                <li><a href="#modelo-core" class="hover:text-white transition-colors duration-300">El Modelo</a></li>
+                <li><a href="#contenedor-social" class="hover:text-white transition-colors duration-300">El Contenedor</a></li>
+                <li><a href="#tratado" class="text-[#D4AF37] hover:text-white transition-colors duration-300">El Marco Aentrópico</a></li>
+            </ul>
+        </div>
+    </nav>
+   
+    <main class="max-w-5xl mx-auto px-6">
+<div id="hero" class="w-full py-12 px-6 text-center fade-in">
+    <h1 class="text-4xl md:text-6xl font-black tracking-widest uppercase mb-2">
+        AENTROPÍA
+    </h1>
+    <p class="text-xl md:text-2xl font-light tracking-widest text-gray-400 uppercase">
+        La Doctrina Aentrópica
+    </p>
+</div>
+<section class="hero-aentropia">
+<div class="diagrama-container">
+    <img src="ImagenHero.svg" alt="Diagrama de Control Aentrópico">
+ </div>
+ <div class="ecuaciones-container">
+    <h3>Dinámica del Sistema:</h3>
+    <div class="formula">\[ \mathbf{E}(s) = \mathbf{R}(s) - \mathbf{B}(s) \]</div>
+    <div class="formula">\[ \mathbf{C}(s) = \mathbf{K}(s) \cdot \mathbf{E}(s) \]</div>
+     <div class="formula">\[ \mathbf{B}(s) = \mathbf{H}(s) \cdot \mathbf{Y}(s) \]</div>
+    <div class="formula maestro">\[ \mathbf{Y}(s) = \mathbf{\Phi}\mathbf{R} + \mathbf{\Gamma}\mathbf{Q} - \mathbf{\Omega}\delta \]</div>
+  </div>
+<div class="mt-12 text-center w-full basis-full">
+        <p class="italic text-lg text-gray-400 font-serif">
+            "Diagrama de bloques de un sistema social en lazo cerrado"
+        </p>
+    </div>
+</section>
+        <!--   
+        <section class="max-w-6xl mx-auto px-4 mb-16 fade-in" style="animation-delay: 0.3s;">
+        <div class="relative group border border-gray-900 rounded-sm overflow-hidden bg-gray-950">
+               
+            <img src="Hero1.jpg" 
+                 alt="Sistema de Control Aentrópico" 
+                 class="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500 shadow-2xl">
+            
+           
+            <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent">
+                
+            </div>
+        </div>
+        -->        
+<section id="principio" class="py-24 border-b border-gray-900 bg-black">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+
+        <!-- El Cabezal: Tipografía unificada y énfasis en la pregunta -->
+        <div class="mb-14">
+            <h2 class="text-2xl md:text-3xl font-black text-white tracking-tight mb-6">
+                <!-- El 01 ya no es font-mono, hereda el font-black del título -->
+                <span class="text-white mr-2">01.</span>El Principio Aentrópico
+            </h2>
+            <h3 class="text-xl md:text-2xl font-medium italic text-gray-300 drop-shadow-md">
+                ¿Y si la política tradicional no basta para resolver un problema de Termodinámica Social?
+            </h3>
+        </div>
+
+        <!-- El Axioma (Estilo Cita Bibliográfica) -->
+        <blockquote class="relative border-l-4 border-blue-600 bg-gray-900/40 p-8 md:p-10 my-12 mx-auto max-w-3xl text-left rounded-r-xl shadow-2xl">
+            <p class="text-lg md:text-xl text-gray-300 font-light leading-relaxed mb-6">
+                Una civilización persiste en la medida en que es capaz de <strong class="text-white font-bold">invertir energía</strong> para sostener su orden frente a la complejidad que la rodea.
+            </p>
+            <p class="text-lg md:text-xl text-gray-300 font-light leading-relaxed">
+                Su permanencia no es accidental. Es una consecuencia directa de su capacidad para mantener su <strong class="text-white font-bold">coherencia</strong> frente a las perturbaciones.
+            </p>
+        </blockquote>
+
+        <!-- El Remate: Separado y con impacto letal -->
+        <div class="max-w-3xl mx-auto mt-14">
+            <p class="text-xl md:text-2xl text-gray-300 font-light leading-relaxed mb-4">
+                Donde esa capacidad falla… el colapso no es inesperado.
+            </p>
+            <!-- Énfasis rojo, mayúsculas, máxima tracción -->
+            <p class="text-2xl md:text-4xl text-red-600 font-black uppercase tracking-widest mt-6 drop-shadow-[0_0_15px_rgba(220,38,38,0.3)]">
+                Es inevitable.
+            </p>
+        </div>
+
+    </div>
+</section>        
+<section id="modelo-core" class="py-24 bg-black border-b border-gray-900">
+    <!-- Cabezal Alineado al Estilo del Principio -->
+    <div class="mb-16 text-center">
+        <h2 class="text-2xl md:text-3xl font-black text-white tracking-tight">
+            <span class="text-white mr-2">02.</span>El Modelo
+        </h2>
+        <p class="text-gray-400 font-mono text-sm tracking-widest uppercase mt-4">Matriz de Variables Fundamentales</p>
+    </div>
+
+    <!-- La Cuadrícula de Contención -->
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-6">
+        
+        <!-- Variable: U -->
+        <button class="group relative p-8 bg-gray-900/50 border border-gray-800 rounded-lg hover:border-blue-500 hover:bg-gray-900 transition-all text-left focus:outline-none">
+            <!-- El Tooltip Oculto (Aparece en hover en PC, y al presionar en móvil) -->
+            <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-11/12 bg-blue-900 text-white text-sm p-3 rounded shadow-2xl opacity-0 group-hover:opacity-100 group-active:opacity-100 group-focus:opacity-100 transition-opacity duration-200 pointer-events-none z-10 text-center">
+                Es el conjunto de capacidades acumuladas de un sistema que le permiten sostener su estructura, coordinar acciones y responder a perturbaciones.
+                <!-- Triangulito del tooltip -->
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-blue-900"></div>
+            </div>
+            <!-- Contenido Visible de la Caja -->
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="text-2xl font-bold text-gray-200 group-hover:text-white transition-colors">Energía Interna</h3>
+                <span class="text-3xl font-black text-blue-600 font-mono">U</span>
+            </div>
+            <p class="text-sm font-mono text-gray-500 uppercase tracking-tighter">Capacidad Latente</p>
+        </button>
+
+        <!-- Variable: W -->
+        <button class="group relative p-8 bg-gray-900/50 border border-gray-800 rounded-lg hover:border-green-500 hover:bg-gray-900 transition-all text-left focus:outline-none">
+            <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-11/12 bg-green-900 text-white text-sm p-3 rounded shadow-2xl opacity-0 group-hover:opacity-100 group-active:opacity-100 group-focus:opacity-100 transition-opacity duration-200 pointer-events-none z-10 text-center">
+                Es la energía transformada en cambios reales del sistema. Solo cuenta como trabajo aquello que genera orden, resuelve problemas o aumenta la capacidad del sistema.
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-green-900"></div>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="text-2xl font-bold text-gray-200 group-hover:text-white transition-colors">Trabajo Social</h3>
+                <span class="text-3xl font-black text-green-600 font-mono">W</span>
+            </div>
+            <p class="text-sm font-mono text-gray-500 uppercase tracking-tighter">Ejecución Efectiva</p>
+        </button>
+
+        <!-- Variable: Q -->
+        <button class="group relative p-8 bg-gray-900/50 border border-gray-800 rounded-lg hover:border-yellow-500 hover:bg-gray-900 transition-all text-left focus:outline-none">
+            <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-11/12 bg-yellow-900 text-white text-sm p-3 rounded shadow-2xl opacity-0 group-hover:opacity-100 group-active:opacity-100 group-focus:opacity-100 transition-opacity duration-200 pointer-events-none z-10 text-center">
+               Es la energía en tránsito entre el sistema y su entorno. Puede convertirse en estructura (W) solo si el sistema tiene la capacidad interna (U) para absorberla y procesarla. Cuando esa capacidad es insuficiente, el flujo no se organiza: incrementa la agitación interna (L) y termina disipándose como entropía (S).
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-yellow-900"></div>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="text-2xl font-bold text-gray-200 group-hover:text-white transition-colors">Flujo de Energía</h3>
+                <span class="text-3xl font-black text-yellow-500 font-mono">Q</span>
+            </div>
+            <p class="text-sm font-mono text-gray-500 uppercase tracking-tighter">Energía Intercambiada</p>
+        </button>
+
+        <!-- Variable: S -->
+        <button class="group relative p-8 bg-gray-900/50 border border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all text-left focus:outline-none">
+            <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-11/12 bg-red-900 text-white text-sm p-3 rounded shadow-2xl opacity-0 group-hover:opacity-100 group-active:opacity-100 group-focus:opacity-100 transition-opacity duration-200 pointer-events-none z-10 text-center">
+               Es la energía que, tras un intercambio, no se aprovecha; esta se dispersa, perdiendo su capacidad de realizar trabajo. Se manifiesta como corrupción, desgaste operativo y fricción burocrática.
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-red-900"></div>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="text-2xl font-bold text-gray-200 group-hover:text-white transition-colors">Entropía</h3>
+                <span class="text-3xl font-black text-red-600 font-mono">S</span>
+            </div>
+            <p class="text-sm font-mono text-gray-500 uppercase tracking-tighter">Energía degradada</p>
+        </button>
+    </div>
+</section>
+     <section id="contenedor-social" class="py-24 bg-black border-b border-gray-900">
+    
+    <!-- Cabezal -->
+    <div class="mb-16 text-center">
+        <h2 class="text-2xl md:text-3xl font-black text-white tracking-tight">
+            <span class="text-white mr-2">03.</span>El Contenedor Social
+        </h2>
+        <p class="text-gray-400 font-mono text-sm tracking-widest uppercase mt-4">Propiedades Termodinámicas</p>
+    </div>
+
+    <!-- La Cuadrícula de Contención (Modificada a grid-cols-3) -->
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
+        
+        <!-- Variable: V (Volumen) - Color: Cian -->
+        <button class="group relative p-8 bg-gray-900/50 border border-gray-800 rounded-lg hover:border-cyan-500 hover:bg-gray-900 transition-all text-left focus:outline-none">
+            <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-11/12 bg-cyan-950 border border-cyan-800 text-gray-200 text-sm p-4 rounded-lg shadow-2xl opacity-0 group-hover:opacity-100 group-active:opacity-100 group-focus:opacity-100 transition-opacity duration-200 pointer-events-none z-10 text-center leading-relaxed">
+                Es el espacio de maniobra disponible dentro de un sistema, definido por la cantidad de estados accesibles y trayectorias posibles para la acción.
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-cyan-800"></div>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="text-2xl font-bold text-gray-200 group-hover:text-white transition-colors">Volumen Social</h3>
+                <span class="text-3xl font-black text-cyan-500 font-mono">V</span>
+            </div>
+            <p class="text-sm font-mono text-gray-500 uppercase tracking-tighter">Espacio Disponible</p>
+        </button>
+
+        <!-- Variable: L (Libertad) - Color: Blanco/Plata -->
+        <button class="group relative p-8 bg-gray-900/50 border border-gray-800 rounded-lg hover:border-gray-300 hover:bg-gray-900 transition-all text-left focus:outline-none">
+            <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-11/12 bg-gray-800 border border-gray-600 text-gray-200 text-sm p-4 rounded-lg shadow-2xl opacity-0 group-hover:opacity-100 group-active:opacity-100 group-focus:opacity-100 transition-opacity duration-200 pointer-events-none z-10 text-center leading-relaxed">
+               Es la magnitud que mide el nivel medio de actividad de los Nodos en un sistema, es decir, su capacidad efectiva de actuar, reaccionar y desplazarse dentro del espacio social.
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-600"></div>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="text-2xl font-bold text-gray-200 group-hover:text-white transition-colors">Libertad</h3>
+                <span class="text-3xl font-black text-white font-mono">L</span>
+            </div>
+            <p class="text-sm font-mono text-gray-500 uppercase tracking-tighter">capacidad de acción</p>
+        </button>
+
+        <!-- Variable: P (Presión) - Color: Naranja (Riesgo Térmico) -->
+        <button class="group relative p-8 bg-gray-900/50 border border-gray-800 rounded-lg hover:border-orange-500 hover:bg-gray-900 transition-all text-left focus:outline-none">
+            <div class="absolute -top-28 left-1/2 -translate-x-1/2 w-11/12 bg-orange-950 border border-orange-800 text-gray-200 text-sm p-4 rounded-lg shadow-2xl opacity-0 group-hover:opacity-100 group-active:opacity-100 group-focus:opacity-100 transition-opacity duration-200 pointer-events-none z-10 text-center leading-relaxed">
+                Es el estado del sistema que emerge cuando múltiples fuerzas sociales interactúan dentro de un volumen limitado y son contenidas por sus superficies estructurales. Cambios en las normas modifican las superficies estructurales, alterando la forma en que la presión se distribuye o se intensifica dentro del sistema.
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-orange-800"></div>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="text-2xl font-bold text-gray-200 group-hover:text-white transition-colors">Presión</h3>
+                <span class="text-3xl font-black text-orange-500 font-mono">P</span>
+            </div>
+            <p class="text-sm font-mono text-gray-500 uppercase tracking-tighter">Grado de Confinamiento</p>
+        </button>
+
+    </div>
+</section>
+<section id="tratado" class="py-24 bg-black border-t border-gray-900">
+    <!-- Cabezal de la Sección -->
+    <div class="mb-16 text-center">
+        <h2 class="text-2xl md:text-3xl font-black text-white tracking-tight">
+            <span class="text-white mr-2">04.</span>El Marco Aentrópico
+        </h2>
+        <p class="text-gray-400 font-mono text-sm tracking-widest uppercase mt-4">Un sistema teórico que modela la dinámica de los sistemas sociales mediante principios termodinámicos.</p>
+    </div>
+
+    <!-- Matriz de Documentos (Grid de 2 columnas) -->
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-6 pb-24">
+        
+        <div class="flex flex-col h-full p-6 md:p-8 bg-gray-900/80 border border-gray-700 rounded-xl hover:border-blue-500 transition-colors shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-blue-600/10 blur-3xl pointer-events-none"></div>
+            
+            <div class="flex-grow z-10">
+                <div class="flex flex-col xl:flex-row gap-5 mb-6 items-center xl:items-start text-center xl:text-left">
+                    
+                    <div class="w-32 sm:w-40 xl:w-32 flex-shrink-0 mb-4 xl:mb-0">
+                        <img src="PortadaDigital.jpg" alt="Portada El Principio Aentrópico" class="w-full h-auto rounded shadow-[0_0_15px_rgba(37,99,235,0.2)] border border-gray-700 hover:scale-105 transition-transform duration-300">
+                    </div>
+                    
+                    <div class="flex flex-col items-center xl:items-start">
+                        <span class="inline-block px-3 py-1 bg-blue-900/50 text-blue-400 font-mono text-[10px] uppercase tracking-widest rounded mb-3 border border-blue-800/50">
+                            EL TRATADO
+                        </span>
+                        <h3 class="text-2xl font-bold text-white leading-tight">
+                            EL MILAGRO DE LO IMPROBABLE
+                        </h3>
+                        <p class="text-xs text-gray-400 font-mono mt-2 uppercase tracking-wide">
+                            La Civilización Aentrópica
+                        </p>
+                    </div>
+                </div>
+
+                <p class="text-gray-400 leading-relaxed mb-8 text-sm md:text-base text-center xl:text-left">
+                    Este tratado explora el propósito de la humanidad desde una perspectiva física y propone un modelo para entender la sociedad como un sistema de gestión de energía, donde su supervivencia depende de cómo transforma y sostiene su estructura.
+                </p>
+            </div>
+            
+            <a href="https://www.amazon.com/-/es/Diomedes-Hugo/dp/B0H6H3HS3H/" target="_blank" rel="noopener noreferrer" class="z-10 group relative w-full flex items-center justify-center px-4 md:px-8 py-4 bg-gray-100 text-black font-black text-sm md:text-base uppercase tracking-widest hover:bg-white transition-all rounded-lg overflow-hidden mt-auto">
+                <span class="relative">Adquirir el Tratado</span>
+                <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+        </div>
+
+        <div class="flex flex-col h-full p-8 bg-black border-2 border-dashed border-gray-800 rounded-xl relative overflow-hidden opacity-70 cursor-not-allowed">
+            <div class="flex-grow z-10 text-center md:text-left">
+                <span class="inline-block px-3 py-1 bg-gray-900 text-gray-500 font-mono text-xs uppercase tracking-widest rounded mb-6 border border-gray-800">Archivo Restringido</span>
+                <h3 class="text-2xl font-bold text-gray-600 mb-4">Validación Académica</h3>
+                <p class="text-gray-600 leading-relaxed mb-8 text-sm md:text-base">
+                    Modelado matemático avanzado y evidencia empírica. El paper técnico destinado a someter la Doctrina Aentrópica al rigor de la revisión por pares.
+                </p>
+            </div>
+            
+            <div class="z-10 w-full flex items-center justify-center px-8 py-4 bg-gray-900/50 border border-gray-800 text-gray-500 font-mono text-sm uppercase tracking-widest rounded-lg mt-auto">
+                <span class="flex items-center">
+                    <span class="w-2 h-2 rounded-full bg-yellow-600 animate-pulse mr-3"></span>
+                    En compilación
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+       
+
+    </main>
+
+  <footer id="cierre" class="py-16 bg-black border-t border-gray-900 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 border-b border-gray-900 pb-12">
+            <div class="md:col-span-2">
+                <h2 class="text-blue-600 font-mono text-sm tracking-[0.3em] uppercase mb-4">Condición Límite</h2>
+                <p class="text-lg font-light italic text-gray-400 leading-relaxed max-w-2xl">
+                    "El Principio Aentrópico no ofrece atajos. <span class="text-white">Exige construir las condiciones que hacen posible la estabilidad.</span>"
+                </p>
+            </div>
+
+            <div class="flex flex-col md:items-end justify-center">
+                <p class="text-gray-500 font-mono text-xs uppercase tracking-widest mb-4">Canales de Transmisión</p>
+                <div class="flex gap-4">
+                    <a href="https://www.youtube.com/@civilizacionaentropica" class="p-3 bg-gray-900 border border-gray-800 rounded hover:border-red-500 hover:text-red-500 text-gray-400 transition-all" aria-label="YouTube">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61567607204735" class="p-3 bg-gray-900 border border-gray-800 rounded hover:border-blue-500 hover:text-blue-500 text-gray-400 transition-all" aria-label="Facebook">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-xs text-gray-600 font-mono">
+                &copy; 2026 AENTROPÍA. Sistema estabilizado.
+            </p>
+            <div class="flex gap-6">
+                 <span class="text-xs text-gray-700 font-mono">ESTADO: OPERATIVO</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- MOTOR LÓGICO PURIFICADO -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const nav = document.getElementById('dynamic-nav');
+            const logoTrigger = document.getElementById('logo-ancla');
+
+            // 1. Motor de Despliegue del Menú (Aparición a los 150px)
+            const checkScroll = () => {
+                if (window.scrollY > 150) {
+                    nav.classList.remove('-translate-y-full'); 
+                    nav.classList.add('translate-y-0');        
+                } else {
+                    nav.classList.remove('translate-y-0');
+                    nav.classList.add('-translate-y-full');    
+                }
+            };
+            window.addEventListener('scroll', checkScroll);
+
+            // 2. Radar de Fronteras para disparar el destello metálico
+            const sections = document.querySelectorAll('section');
+            
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // Si el usuario acaba de entrar a una nueva sección (50% visible)
+                    if (entry.isIntersecting && window.scrollY > 150) {
+                        // Disparar el láser
+                        logoTrigger.classList.add('fire-laser');
+                        
+                        // Recargar el láser después de 1 segundo
+                        setTimeout(() => {
+                            logoTrigger.classList.remove('fire-laser');
+                        }, 1000);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            // Conectar el radar a todas las secciones
+            sections.forEach(sec => sectionObserver.observe(sec));
+        });
+    </script>
+</body>
+</html>
